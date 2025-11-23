@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Button Style Maker — Pro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app" class="app dark">
+    <header class="topbar">
+      <h1>Button Style Maker — Pro</h1>
+      <div class="top-actions">
+        <select id="themeSelect" title="Editor theme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="oled">OLED</option>
+          <option value="cyber">Cyberpunk</option>
+          <option value="pastel">Pastel</option>
+        </select>
+        <button id="shareBtn" title="Generate shareable URL">Share</button>
+        <button id="exportInline">Export single HTML</button>
+        <button id="saveProject">Save</button>
+        <button id="loadProject">Load</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Controls Column -->
+      <aside class="controls panel" id="controls">
+        <section class="block">
+          <h2>Text & Icon</h2>
+          <label>Button text
+            <input id="btnText" type="text" value="Like">
+          </label>
+
+          <label>Icon (select built-in or upload)
+            <select id="iconSelect">
+              <option value="">— none —</option>
+            </select>
+          </label>
+
+          <div class="row">
+            <label>Upload SVG
+              <input id="uploadSvg" type="file" accept=".svg" />
+            </label>
+            <button id="pasteSvg">Paste SVG</button>
+          </div>
+
+          <label>
+            Icon size
+            <input id="iconSize" type="range" min="10" max="36" value="18">
+          </label>
+
+          <label>
+            Icon position
+            <select id="iconPos"><option value="left">Left</option><option value="right">Right</option><option value="only">Icon-only</option></select>
+          </label>
+        </section>
+
+        <section class="block">
+          <h2>Layout & Type</h2>
+          <label>Width
+            <select id="widthType"><option value="auto">Auto</option><option value="fixed">Fixed (px)</option><option value="full">Full width</option></select>
+          </label>
+          <label class="row">Fixed width px
+            <input id="fixedWidth" type="number" min="40" value="160">
+          </label>
+
+          <label>Font size
+            <input id="fontSize" type="range" min="10" max="40" value="16">
+          </label>
+
+          <label>Padding vertical
+            <input id="padY" type="range" min="0" max="48" value="10">
+          </label>
+          <label>Padding horizontal
+            <input id="padX" type="range" min="0" max="64" value="18">
+          </label>
+
+          <label>Border radius
+            <input id="radius" type="range" min="0" max="48" value="12">
+          </label>
+          <label>Border width
+            <input id="borderW" type="range" min="0" max="8" value="0">
+          </label>
+        </section>
+
+        <section class="block">
+          <h2>Colors & Background</h2>
+          <div class="row">
+            <label>Text color<input id="textColor" type="color" value="#ffffff"></label>
+            <label>Accent / alt<input id="textAlt" type="color" value="#022a2f"></label>
+          </div>
+
+          <label>Background type
+            <select id="bgType"><option value="solid">Solid</option><option value="gradient">Gradient</option><option value="transparent">Transparent</option></select>
+          </label>
+
+          <div class="row">
+            <label>BG 1<input id="bg1" type="color" value="#06b6d4"></label>
+            <label>BG 2<input id="bg2" type="color" value="#3b82f6"></label>
+          </div>
+
+          <label>Gradient angle
+            <input id="angle" type="range" min="0" max="360" value="135">
+          </label>
+
+          <label>Border color
+            <input id="borderColor" type="color" value="#ffffff">
+          </label>
+        </section>
+
+        <section class="block">
+          <h2>Shadow & Elevation</h2>
+          <label>Shadow X<input id="shadowX" type="range" min="-30" max="60" value="0"></label>
+          <label>Shadow Y<input id="shadowY" type="range" min="-30" max="60" value="6"></label>
+          <label>Blur<input id="shadowBlur" type="range" min="0" max="80" value="18"></label>
+          <label>Shadow color<input id="shadowColor" type="color" value="#06384a"></label>
+        </section>
+
+        <section class="block">
+          <h2>States</h2>
+          <div class="row">
+            <label><input type="checkbox" id="disabled"> Disabled</label>
+            <label><input type="checkbox" id="uppercase"> Uppercase</label>
+            <label><input type="checkbox" id="pill"> Pill</label>
+          </div>
+
+          <label>Hover shade (%)
+            <input id="hoverShade" type="range" min="-80" max="80" value="-10">
+          </label>
+
+          <label>Hover translate Y (px)
+            <input id="hoverY" type="range" min="-20" max="40" value="-3">
+          </label>
+        </section>
+
+        <section class="block">
+          <h2>Animations</h2>
+          <select id="animationSelect">
+            <option value="none">None</option>
+            <option value="bounce">Bounce</option>
+            <option value="glow">Glow</option>
+            <option value="ripple">Ripple</option>
+            <option value="pulse">Pulse</option>
+            <option value="flip">Flip</option>
+            <option value="shake">Shake</option>
+            <option value="rotate">Rotate</option>
+          </select>
+
+          <label>Speed(ms)
+            <input id="animSpeed" type="range" min="50" max="2000" value="300">
+          </label>
+
+          <label>Intensity
+            <input id="animIntensity" type="range" min="1" max="10" value="3">
+          </label>
+        </section>
+
+        <section class="block">
+          <h2>Presets & AI</h2>
+          <div class="preset-grid" id="presetGrid"></div>
+          <label>AI prompt — describe a button style (no external APIs)
+            <input id="aiPrompt" placeholder="e.g.: glossy neon alert button with pulse">
+          </label>
+          <button id="aiGenerate">AI Generate</button>
+        </section>
+
+        <section class="block">
+          <h2>Advanced</h2>
+          <label>CSS Variables editor (live)
+            <textarea id="cssVars" rows="6" placeholder="--btn-bg: #06b6d4"></textarea>
+          </label>
+
+          <div class="row">
+            <button id="exportTailwind">Export Tailwind-like</button>
+            <button id="exportBootstrap">Export Bootstrap</button>
+            <button id="exportReact">Export React</button>
+            <button id="exportVue">Export Vue</button>
+          </div>
+          <div class="row">
+            <button id="addToPlayground">Add to Playground</button>
+            <button id="clearPlayground">Clear Playground</button>
+          </div>
+        </section>
+
+        <footer class="small muted">Pro features: Save/Load, Share URL, Export single HTML, Multi-button playground, particle effects.</footer>
+      </aside>
+
+      <!-- Preview & Code -->
+      <section class="panel preview-col">
+        <div class="preview-top">
+          <div class="preview-info">
+            <h2>Preview</h2>
+            <div class="preview-controls">
+              <label>Viewport
+                <select id="respSelect"><option value="desktop">Desktop</option><option value="tablet">Tablet</option><option value="mobile">Mobile</option></select>
+              </label>
+              <label>State
+                <select id="stateMode"><option value="default">Default</option><option value="hover">Hover</option><option value="active">Active</option><option value="focus">Focus</option><option value="disabled">Disabled</option></select>
+              </label>
+            </div>
+          </div>
+
+          <div class="preview-actions">
+            <button id="copyHTMLBtn">Copy HTML</button>
+            <button id="copyCSSBtn">Copy CSS</button>
+            <button id="downloadCSSBtn">Download CSS</button>
+          </div>
+        </div>
+
+        <div id="previewViewport" class="preview-viewport">
+          <div id="previewArea" class="preview-area-inner">
+            <!-- Buttonsrendered here -->
+          </div>
+        </div>
+
+        <div class="code-section">
+          <div class="code-block">
+            <h3>HTML</h3>
+            <textarea id="htmlCode" readonly></textarea>
+            <div class="row small">
+              <button id="copyHTMLSnippet">Copy</button>
+            </div>
+          </div>
+
+          <div class="code-block">
+            <h3>CSS</h3>
+            <textarea id="cssCode" readonly></textarea>
+            <div class="row small">
+              <button id="copyCSSSnippet">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="playground panel" id="playground">
+          <h3>Multi-button Playground</h3>
+          <div id="playButtons" class="play-buttons"></div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
